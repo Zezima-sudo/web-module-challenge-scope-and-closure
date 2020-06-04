@@ -27,10 +27,15 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *  
+ *  In the second function, the count variable which stores memory of the current count is declared outside of the function, this means that when you return count it will always start at 0 because it's not using closure.
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ *  The first function uses closure. The count variable is declared inside of the function and a second function is invoked inside of it that keeps track of the count which doesn't get reset when we call it because the count variable is tied only to the countMaker() function. 
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * Counter 1 would be preferable if we wanted a way to keep track of a number in memory and add 1 to it, while 'remembering' what the previous count was. Counter 2 would be preferable if we wanted to add 1 to 0.
  *
 */
 
@@ -56,11 +61,12 @@ function counter2() {
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
 
-    /*Code Here*/
-
+function inning() {
+  return Math.floor(Math.random() * 3);
 }
+
+
 
 /* Task 3: finalScore()
 
@@ -76,11 +82,25 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
 
-  /*Code Here*/
 
-}
+function finalScore(inning,num){
+  let home = 0;
+  let away = 0;
+  for (let i = 0; i < num; i++) {
+    let scores = {
+      home: inning(num),
+      away: inning(num)
+    }
+    return scores;
+    
+  } 
+};
+
+
+finalScore(inning,9);
+
+
 
 /* Task 4: 
 
@@ -103,8 +123,20 @@ and returns the score at each pont in the game, like so:
 
 Final Score: 6 - 10 */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+function scoreboard(inning, num) {
+  let home = 0;
+  let away = 0;
+  for (let i = 0; i < num; i++) {
+      home += inning();
+      away += inning();
+      console.log(`Inning ${i}: Home:${home} Away: ${away}`);
+    }
+    console.log(`Final Score: Home: ${home}, Away: ${away}`);
+      
+  }
+
+console.log(scoreboard(inning,9));
+ 
+
 
 
